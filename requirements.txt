@@ -1,0 +1,12 @@
+pandas
+numpy
+scikit-learn
+imblearn
+xgboost
+Flask
+joblib
+gunicorn
+matplotlib
+seaborn
+jupyter # For running notebooks
+ipykernel # For Jupyter notebooks

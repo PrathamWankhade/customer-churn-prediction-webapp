@@ -1,0 +1,146 @@
+# Customer Churn Prediction Web Application
+
+This project predicts customer churn for a telecom company using historical customer data. It includes data exploration, preprocessing, model training, and a Flask web application for users to get predictions based on input features.
+
+## Project Goal
+To identify customers likely to leave the telecom service (churn) so that proactive retention strategies can be implemented.
+
+## Project Utility & Significance
+
+This "Customer Churn Prediction Webapp" is designed to be a valuable tool and a comprehensive demonstration of machine learning capabilities. Its utility spans both direct business applications and as a showcase of technical skills:
+
+### For Business & Decision Making:
+The core function of this project is to predict customer churn, enabling businesses (particularly in telecom or subscription-based services) to:
+
+*   **Proactively Retain Customers:** Identify at-risk customers *before* they decide to leave, allowing for timely intervention.
+*   **Optimize Retention Efforts:** Focus retention resources (discounts, personalized support, outreach) on customers with the highest churn probability, improving cost-effectiveness.
+*   **Reduce Revenue Attrition:** Minimizing churn directly contributes to stabilizing and increasing revenue by retaining existing customer value.
+*   **Understand Churn Drivers:** The underlying models can provide insights into factors significantly influencing a customer's decision to churn (e.g., contract type, monthly charges, customer service interactions), guiding strategic improvements.
+*   **Enhance Customer Lifetime Value (CLV):** Longer customer tenures, achieved through effective churn management, boost overall CLV.
+
+### As a Technical Showcase & Learning Tool:
+This project demonstrates a complete machine learning lifecycle and a range of technical competencies:
+
+*   **End-to-End ML Pipeline:** From data acquisition and exploratory data analysis (EDA) to preprocessing (cleaning, encoding, scaling), feature engineering, imbalanced data handling (SMOTE), model training (Logistic Regression, Random Forest, XGBoost), hyperparameter tuning, and robust evaluation.
+*   **Practical Skill Demonstration:**
+    *   **Python:** Core programming language.
+    *   **Data Science Libraries:** Mastery of Pandas for data manipulation, NumPy for numerical operations, Matplotlib/Seaborn for visualization.
+    *   **Machine Learning Libraries:** Proficient use of Scikit-learn for model building and evaluation, Imblearn for imbalance handling, and XGBoost for advanced gradient boosting.
+    *   **Web Integration:** Basic web application development using Flask to make the model accessible and interactive.
+    *   **Software Engineering Principles:** Modular project structure (data, notebooks, models, `src/utils.py`, web components), version control readiness, and dependency management (`requirements.txt`, virtual environments).
+*   **Problem-Solving:** Applying data-driven techniques to address a tangible and significant business challenge.
+*   **Portfolio Piece:** Serves as a concrete example of applied data science skills for internships, job applications, or further academic pursuits.
+
+By bridging the gap between a machine learning model and a user-facing application, this project highlights the potential of data science to deliver actionable insights and practical solutions.
+
+## Directory Structure
+customer-churn-prediction-webapp/
+├── README.md # This file
+├── requirements.txt # Python dependencies
+├── app.py # Flask web application
+├── data/
+│ └── telco_customer_churn.csv # Dataset (Download from Kaggle)
+├── notebooks/
+│ ├── 01_Data_Exploration_and_Preprocessing.ipynb
+│ └── 02_Model_Training_and_Evaluation.ipynb
+├── models/ # Saved trained models and preprocessors
+│ ├── best_churn_model.pkl
+│ ├── scaler.pkl
+│ └── encoder_columns.json
+├── static/ # For CSS, JS, images (Flask)
+│ └── css/
+│ └── style.css
+├── templates/ # For HTML files (Flask)
+│ ├── index.html # Main page with form
+│ └── result.html # Page to display prediction
+└── .gitignore
+
+## Dataset
+
+The project uses the "Telco Customer Churn" dataset, commonly found on Kaggle.
+- **Source:** [Telco Customer Churn on Kaggle](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+- **Action:** Download `WA_Fn-UseC_-Telco-Customer-Churn.csv`, rename it to `telco_customer_churn.csv`, and place it in the `data/` directory.
+
+## Setup and Installation
+
+1.  **Clone the repository (or create the structure and files):**
+    ```bash
+    git clone <your-repo-url>
+    cd customer-churn-prediction-webapp
+    ```
+
+2.  **Create a virtual environment (recommended):**
+    ```bash
+    python -m venv venv
+    ```
+    Activate the environment:
+    -   Windows: `venv\Scripts\activate`
+    -   macOS/Linux: `source venv/bin/activate`
+
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+## Running the Project
+
+1.  **Data Preparation & Model Training (Jupyter Notebooks):**
+    *   Ensure the `telco_customer_churn.csv` dataset is in the `data/` folder.
+    *   Open and run the Jupyter Notebooks in order:
+        1.  `notebooks/01_Data_Exploration_and_Preprocessing.ipynb`: This notebook performs EDA, cleans the data, preprocesses features (scaling, encoding), and saves the scaler (`scaler.pkl`) and encoded column names (`encoder_columns.json`) to the `models/` directory. It also saves the processed training/testing splits.
+        2.  `notebooks/02_Model_Training_and_Evaluation.ipynb`: This notebook loads the preprocessed data, handles class imbalance using SMOTE, trains several classification models, evaluates them, (optionally) performs hyperparameter tuning, and saves the best performing model (`best_churn_model.pkl`) to the `models/` directory.
+
+2.  **Run the Flask Web Application:**
+    After the notebooks have been successfully run and the model artifacts (`.pkl`, `.json` files) are present in the `models/` directory:
+    ```bash
+    python app.py
+    ```
+    The application will typically start on `http://127.0.0.1:5000/` or `http://0.0.0.0:5000/`. Open this URL in your web browser.
+
+## Web Application Usage
+
+-   Navigate to the home page.
+-   Fill in the customer details in the provided form.
+-   Click the "Predict Churn" button.
+-   The application will display the prediction (Likely to Churn or Unlikely to Churn) along with a confidence score.
+
+## Model Details
+
+-   **Preprocessing:**
+    -   Handling of `TotalCharges` (conversion to numeric, imputation for tenure=0).
+    -   Target variable (`Churn`) converted to binary (0/1).
+    -   One-Hot Encoding for categorical features. `SeniorCitizen` is treated as categorical for this.
+    -   Standard Scaling for numerical features (`tenure`, `MonthlyCharges`, `TotalCharges`).
+-   **Imbalance Handling:** SMOTE (Synthetic Minority Over-sampling Technique) applied to the training data.
+-   **Models Trained (Examples):** Logistic Regression, Decision Tree, Random Forest, XGBoost.
+-   **Evaluation Metrics:** ROC AUC Score, Precision, Recall, F1-Score, Classification Report, Confusion Matrix.
+-   The best model (typically XGBoost or Random Forest after tuning) is selected based on ROC AUC and saved.
+
+## Key Files and Their Roles
+
+-   `app.py`: Contains the Flask application logic, including routes, form handling, data preprocessing for new inputs, and model prediction.
+-   `models/`: Stores the trained machine learning model (`.pkl`), the feature scaler (`.pkl`), and the list of one-hot encoded column names (`.json`). **These are generated by the notebooks.**
+-   `notebooks/`: Jupyter notebooks for the data science workflow.
+    -   `01_Data_Exploration_and_Preprocessing.ipynb`: Data loading, cleaning, EDA, and feature preprocessing.
+    -   `02_Model_Training_and_Evaluation.ipynb`: Model training, hyperparameter tuning, evaluation, and saving the best model.
+-   `static/css/style.css`: Custom CSS for styling the web application.
+-   `templates/`: HTML templates for the web pages.
+    -   `index.html`: The main page with the input form.
+    -   `result.html`: The page displaying the prediction result.
+
+## Potential Future Work
+
+-   More advanced feature engineering.
+-   Experiment with other models (e.g., LightGBM, CatBoost, Neural Networks).
+-   More sophisticated hyperparameter tuning (e.g., Optuna, Hyperopt).
+-   Deployment to a cloud platform (e.g., Heroku, AWS, Azure).
+-   Implement user authentication and a database to store predictions.
+-   Add model monitoring and retraining capabilities.
+-   More detailed error handling and input validation in the web app.
+-   Incorporate explainability (e.g., SHAP, LIME) into the web app to show reasons for predictions.
+
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/) (or specify your chosen license)

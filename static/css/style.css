@@ -1,0 +1,126 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa; /* Lighter background */
+    color: #343a40; /* Darker text for better contrast */
+    padding-top: 20px; /* Add some space at the top */
+}
+
+.container {
+    max-width: 960px; /* Standard container width */
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Softer, more pronounced shadow */
+    margin-bottom: 30px; /* Space below card */
+}
+
+.card-header {
+    background-image: linear-gradient(to right, #007bff, #0056b3); /* Gradient header */
+    color: white;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    padding: 1.5rem 2rem;
+    text-align: center;
+}
+
+.card-header h1 {
+    font-weight: 300;
+    font-size: 2.5rem; /* Slightly larger heading */
+    margin-bottom: 0;
+}
+
+.card-body {
+    padding: 2.5rem; /* More padding in body */
+}
+
+.form-group label {
+    font-weight: 600; /* Bolder labels */
+    color: #495057; /* Slightly lighter label color */
+    margin-bottom: 0.5rem; /* Space below label */
+}
+
+.form-control, .form-control-sm { /* Added form-control-sm for select elements if needed */
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    padding: 0.75rem 1rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    background-color: #fff; /* Ensure white background for inputs */
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    background-color: #fff; /* Ensure white background on focus */
+}
+
+select.form-control { /* Ensure select also gets padding */
+    height: calc(1.5em + 1.5rem + 2px); /* Match input height */
+}
+
+.btn { /* General button styling */
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+.btn-success:hover {
+    background-color: #1e7e34;
+    border-color: #1c7430;
+}
+
+.alert {
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1.5rem; /* Space above alert */
+}
+.alert h4{
+    font-weight: 600; /* Bolder alert heading */
+    margin-bottom: 0.75rem;
+}
+
+hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid #dee2e6; /* Lighter hr */
+}
+
+h5.form-section-title { /* Custom class for form subheadings */
+    color: #0056b3 !important; /* Darker blue */
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #007bff; /* Underline for section titles */
+    display: inline-block; /* To make border-bottom only span the text width */
+}
+
+footer {
+    color: #6c757d; /* Standard muted color */
+    font-size: 0.9em;
+    padding: 20px 0;
+    text-align: center;
+    background-color: #e9ecef; /* Light footer background */
+    margin-top: 40px;
+    border-top: 1px solid #dee2e6;
+}
