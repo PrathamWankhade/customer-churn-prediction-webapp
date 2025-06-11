@@ -62,8 +62,7 @@ customer-churn-prediction-webapp/
 └── templates/                    # For HTML files (Flask)
     ├── index.html                # Main page with form
     └── result.html               # Page to display prediction
-
-
+```
 ## Dataset
 
 The project uses the "Telco Customer Churn" dataset, commonly found on Kaggle.
